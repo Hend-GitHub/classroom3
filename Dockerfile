@@ -11,20 +11,6 @@ RUN wget -q https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-instal
 RUN apt-get update -qq && apt-get install -y apt-transport-https
 
 
-RUN apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-   
-RUN apt-get update -qq
-   
-RUN apt-get install -y docker-ce docker-ce-cli containerd.io
-
-RUN curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-RUN chmod +x /usr/local/bin/docker-compose
-
 # install yarn and node
 RUN wget -q https://deb.nodesource.com/setup_10.x -O- | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -62,4 +48,6 @@ RUN ls -l
 
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
+
 EXPOSE 8000 2222 80 443
+ENTRYPOINT bundle exec rails s -p 80 -b 0.0.0.0
