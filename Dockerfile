@@ -49,5 +49,4 @@ RUN ls -l
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
 
-EXPOSE 8000 2222 80 443
-ENTRYPOINT bundle exec rails s -p 80 -b 0.0.0.0
+EXPOSE 8000 2222 80 443 3000
