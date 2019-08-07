@@ -10,18 +10,8 @@ RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://ar
 RUN wget -q https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer -O- | bash
 RUN apt-get update -qq && apt-get install -y apt-transport-https
 
-ENV SSH_PASSWD "root:Docker!"
-RUN apt-get update \
-        && apt-get install -y --no-install-recommends dialog \
-        && apt-get update \
-	&& apt-get install -y --no-install-recommends openssh-server \
-	&& echo "$SSH_PASSWD" | chpasswd 
 
-COPY sshd_config /etc/ssh/
-COPY init.sh /usr/local/bin/
-	
-RUN chmod u+x /usr/local/bin/init.sh
-EXPOSE 8000 2222
+
 
 RUN curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
@@ -63,3 +53,4 @@ RUN ls -l
 
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
+EXPOSE 8000 2222 80 443
