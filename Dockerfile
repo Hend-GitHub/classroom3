@@ -17,9 +17,6 @@ RUN apt-get install -y \
     curl \
     gnupg-agent \
     software-properties-common
-
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-RUN apt-key fingerprint 0EBFCD88
    
 RUN apt-get update -qq
    
