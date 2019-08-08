@@ -30,7 +30,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-EXPOSE 22
+EXPOSE 22 2222
 CMD ["/usr/sbin/sshd", "-D"]
 
 RUN apt-get install -y --force-yes build-essential curl git
