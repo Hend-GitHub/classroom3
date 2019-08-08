@@ -48,7 +48,8 @@ RUN ls -l
 
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
-RUN script/setup
+ADD script/setup .
+RUN bash script/setup
 
 EXPOSE 80
 
