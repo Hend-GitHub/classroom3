@@ -19,6 +19,20 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 # install nodejs, postgres, redis, memcached
 RUN apt-get update -qq && apt-get install -y yarn nodejs postgresql-client redis-server memcached 
 
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo 'root:7dvs06VTAA96vJ5WTyD0%3' | chpasswd
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
+
 RUN apt-get install -y --force-yes build-essential curl git
 
 #App required to change file format to unix from windows
@@ -48,8 +62,7 @@ RUN ls -l
 
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
-ADD script/setup .
-RUN bash script/setup
+
 
 EXPOSE 80
 
