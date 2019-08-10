@@ -52,6 +52,7 @@ RUN apt install dos2unix
 RUN apt-get install -y --force-yes zlib1g-dev libpq-dev netcat rinetd libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
 
 RUN apt-get clean
+RUN apt-get clean
 
 #In case a user is using Windows OS, this command has to be executed to convert all files 
 #to Unix format to prevent encoding errors.
