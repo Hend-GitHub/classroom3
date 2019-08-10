@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if ! [ -e /home/site/wwwroot/Gemfile ] && [ -z "$RAILS_IGNORE_SPLASH" ]
+if ! [ -e /usr/src/app/Gemfile ] && [ -z "$RAILS_IGNORE_SPLASH" ]
   then
    echo 'No Gemfile found and RAILS_IGNORE_SPLASH not set, running default static site'
    exec ruby /opt/staticsite.rb
