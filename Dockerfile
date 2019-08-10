@@ -26,12 +26,16 @@ COPY sshd_config /etc/ssh/
 
 COPY staticsite.rb /opt/staticsite.rb
 
+
+
 RUN apt-get update -qq \
     && apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-install-recommends \
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc
 
-
+RUN chmod 755 /bin/init_container.sh \
+  && mkdir -p /home/LogFiles/ \
+  && chmod 755 /opt/startup.sh
 
 EXPOSE 2222 8080 80
 
