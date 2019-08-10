@@ -20,6 +20,12 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -qq && apt-get install -y yarn nodejs postgresql-client redis-server memcached 
 
 
+COPY init_container.sh /bin/
+COPY startup.sh /opt/
+COPY sshd_config /etc/ssh/
+COPY hostingstart.html /opt/startup/hostingstart.html
+COPY staticsite.rb /opt/staticsite.rb
+
 RUN apt-get update -qq \
     && apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-install-recommends \
     && echo "root:Docker!" | chpasswd \
@@ -27,7 +33,7 @@ RUN apt-get update -qq \
 
 
 
-EXPOSE 2222 8080
+EXPOSE 2222 8080 80
 
 ENV PORT 8080
 ENV SSH_PORT 2222
