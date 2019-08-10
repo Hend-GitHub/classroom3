@@ -25,8 +25,6 @@ RUN apt-get update -qq \
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc
 
-RUN eval "$(rbenv init -)" \
-  && rbenv global 2.4.2
 
 RUN chmod 755 /bin/init_container.sh \
   && mkdir -p /home/LogFiles/ \
