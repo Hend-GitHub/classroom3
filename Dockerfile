@@ -43,7 +43,7 @@ ENV PORT 8080
 ENV SSH_PORT 2222
 ENV WEBSITE_ROLE_INSTANCE_ID localRoleInstance
 ENV WEBSITE_INSTANCE_ID localInstance
-ENV PATH ${PATH}:/home/site/wwwroot
+ENV PATH ${PATH}:/usr/src/app
 
 RUN apt-get install -y --force-yes build-essential curl git
 
@@ -76,6 +76,6 @@ RUN ls -l
 COPY config/rinetd.conf /etc/rinetd.conf
 
 
-WORKDIR /home/site/wwwroot
+WORKDIR /usr/src/app
 
 ENTRYPOINT [ "/bin/init_container.sh" ]
