@@ -40,6 +40,7 @@ RUN chmod 755 /bin/init_container.sh \
 EXPOSE 2222 80
 
 ENV PORT 80
+ENV WEBSITES_PORT 80
 ENV SSH_PORT 2222
 
 ENV PATH ${PATH}:/usr/src/app
