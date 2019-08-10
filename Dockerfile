@@ -23,7 +23,7 @@ RUN apt-get update -qq && apt-get install -y yarn nodejs postgresql-client redis
 COPY init_container.sh /bin/
 COPY startup.sh /opt/
 COPY sshd_config /etc/ssh/
-COPY hostingstart.html /opt/startup/hostingstart.html
+
 COPY staticsite.rb /opt/staticsite.rb
 
 RUN apt-get update -qq \
