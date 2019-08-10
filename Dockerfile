@@ -24,7 +24,7 @@ COPY init_container.sh /bin/
 COPY startup.sh /opt/
 COPY sshd_config /etc/ssh/
 
-COPY staticsite.rb /opt/staticsite.rb
+
 
 
 
@@ -41,8 +41,7 @@ EXPOSE 2222 80
 
 ENV PORT 80
 ENV SSH_PORT 2222
-ENV WEBSITE_ROLE_INSTANCE_ID localRoleInstance
-ENV WEBSITE_INSTANCE_ID localInstance
+
 ENV PATH ${PATH}:/usr/src/app
 
 RUN apt-get install -y --force-yes build-essential curl git
@@ -75,7 +74,5 @@ RUN ls -l
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
 
-
-WORKDIR /usr/src/app
 
 ENTRYPOINT [ "/bin/init_container.sh" ]
