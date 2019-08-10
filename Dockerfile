@@ -26,9 +26,6 @@ RUN apt-get update -qq \
     && echo "cd /home" >> /etc/bash.bashrc
 
 
-RUN chmod 755 /bin/init_container.sh \
-  && mkdir -p /home/LogFiles/ \
-  && chmod 755 /opt/startup.sh
 
 EXPOSE 2222 8080
 
