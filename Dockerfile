@@ -48,3 +48,4 @@ EXPOSE 2222 80 5000 3000
 
 #Startup script and port forwarding
 COPY config/rinetd.conf /etc/rinetd.conf
+CMD ["script/server"]
